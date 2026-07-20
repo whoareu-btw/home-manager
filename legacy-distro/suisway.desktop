@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Suisway
+Comment=Kyou mo kawaii
+Exec=sh /usr/local/bin/suisway.sh
+Type=Application
