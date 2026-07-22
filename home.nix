@@ -42,48 +42,49 @@
   };
 
   qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style.name = "kvantum";
+
+    kvantum = {
       enable = true;
-      platformTheme.name = "qtct";
-      style.name = "kvantum";
+      settings = {
+        General = {
+          theme = "KvGnomeDark";
+        };
+      };
+    };
 
-      kvantum = {
-          enable = true;
-          settings = {
-              General = {
-                  theme = "KvGnomeDark";
-              };
-          };
+    qt5ctSettings = {
+      Appearance = {
+        icon_theme = "Papirus-Dark";
+        standard_dialogs = "xdgdesktopportal";
+        style = "kvantum";
       };
+      Fonts = {
+        fixed = "\"JetBrainsMono NF,10\"";
+        general = "\"JetBrainsMono NF,10\"";
+      };
+    };
 
-      qt5ctSettings = {
-          Appearance = {
-              icon_theme = "Papirus-Dark";
-              standard_dialogs = "xdgdesktopportal";
-              style = "kvantum";
-          };
-          Fonts = {
-              fixed = "\"JetBrainsMono NF,10\"";
-              general = "\"JetBrainsMono NF,10\"";
-          };
+    qt6ctSettings = {
+      Appearance = {
+        icon_theme = "Papirus-Dark";
+        standard_dialogs = "xdgdekstopportal";
+        style = "kvantum";
       };
-      qt6ctSettings = {
-          Appearance = {
-              icon_theme = "Papirus-Dark";
-              standard_dialogs = "xdgdekstopportal";
-              style = "kvantum";
-          };
-          Fonts = {
-              fixed = "\"JetBrainsMono NF,10\"";
-              general = "\"JetBrainsMono NF,10\"";
-          };
+      Fonts = {
+        fixed = "\"JetBrainsMono NF,10\"";
+        general = "\"JetBrainsMono NF,10\"";
       };
+    };
   };
 
   fonts.fontconfig = {
-      enable = true;
-      defaultFonts = {
-          emoji = [ "Noto Emoji" ];
-      };
+    enable = true;
+    defaultFonts = {
+      emoji = [ "Noto Emoji" ];
+    };
   };
 
   home.packages = with pkgs; [
@@ -128,12 +129,10 @@
   ];
 
   programs = {
-      zellij = {
-          enable = true;
-          enableZshIntegration = true;
-      };
-
-      git.enable = true;
+    zellij = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 
   xdg.configFile. "gtk-4.0/settings.ini" .text = ''
