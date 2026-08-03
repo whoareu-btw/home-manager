@@ -23,7 +23,7 @@
       inherit pkgs;
 
       modules = [
-        ./home.nix
+        ./snow/home.nix
       ];
 
       extraSpecialArgs = {

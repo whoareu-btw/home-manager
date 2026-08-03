@@ -1,10 +1,20 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
+let
+  themeName = "Orchis-Grey-Dark-Compact";
+  themePkg = pkgs.orchis-theme;
+
+  iconName = "Papirus-Dark";
+  iconPkg = pkgs.papirus-icon-theme.override { 
+    color = "black";
+  };
+in
 {
   imports = [
-    ./neovim.nix
-    ./fcitx.nix
+    ./snowy/default.nix
   ];
+
+  targets.genericLinux.enable = true;
 
   programs.home-manager.enable = true;
 
@@ -27,8 +37,7 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Orchis-Grey-Dark-Compact";
-      package = pkgs.orchis-theme;
+      name = themeName;
     };
 
     font = {
@@ -37,7 +46,7 @@
     };
 
     iconTheme = {
-      name = "Papirus-Dark";
+      name = themeName;
     };
   };
 
@@ -57,7 +66,7 @@
 
     qt5ctSettings = {
       Appearance = {
-        icon_theme = "Papirus-Dark";
+        icon_theme = themeName;
         standard_dialogs = "xdgdesktopportal";
         style = "kvantum";
       };
@@ -69,7 +78,7 @@
 
     qt6ctSettings = {
       Appearance = {
-        icon_theme = "Papirus-Dark";
+        icon_theme = themeName;
         standard_dialogs = "xdgdekstopportal";
         style = "kvantum";
       };
@@ -110,11 +119,6 @@
     libsForQt5.qt5ct
     kdePackages.qt6ct
    
-    (papirus-icon-theme.override { 
-        color = "black";
-    })
-
-    zsh-autosuggestions
     rustc
     cargo
     rust-analyzer
@@ -144,4 +148,19 @@
     [Icons]
     Theme=Papirus-Dark
   '';
+
+  xfconf.settings = {
+    xsettings = {
+      "Net/ThemeName" = themeName;
+      "Net/IconThemeName" = iconName;
+    };
+    xfwm4 = {
+      "general/theme" = themeName;
+    };
+  };
+
+  home.file = {
+    ".themes/${themeName}".source = "${themePkg}/share/themes/${themeName}";
+    ".icons/${iconName}".source = "${iconPkg}/share/icons/${iconName}";
+  };
 }

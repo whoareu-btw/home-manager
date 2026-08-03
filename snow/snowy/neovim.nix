@@ -112,7 +112,6 @@
           'rust_analyzer', 
           'pyright', 
           'bashls', 
-          'nil_ls' 
         }
 
         for _, lsp in ipairs(default_servers) do
@@ -139,6 +138,21 @@
           }
         })
         vim.lsp.enable('lua_ls')
+
+        vim.lsp.config('nil_ls', {
+          capabilities = capabilities,
+          settings = {
+            ["nil"] = {
+              nix = {
+                flake = {
+                  autoArchive = true,
+                  autoEvalInputs = true,
+                },
+              },
+            },
+          },
+        })
+        vim.lsp.enable('nil_ls')
 
         -- END OF ACTIVATE PLUGINS
 
