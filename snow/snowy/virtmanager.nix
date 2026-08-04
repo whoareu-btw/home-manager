@@ -4,7 +4,7 @@
   xdg.desktopEntries.virt-manager = {
     name = "Virtual Machine Manager";
     genericName = "Desktop virtualization";
-    comment = "Manager virtual machines";
+    comment = "Manage virtual machines";
     icon = "virt-manager";
     exec = "env -u PYTHONPATH /usr/bin/python3 /usr/bin/virt-manager %U";
     terminal = false;

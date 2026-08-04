@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   themeName = "Orchis-Grey-Dark-Compact";
@@ -28,7 +28,6 @@ in
     enable = true;
     size = 24;
     x11.enable = true;
-    sway.enable = true;
     gtk.enable = true;
     package = pkgs.google-cursor;
     name = "GoogleDot-Black";
@@ -102,20 +101,12 @@ in
     nerd-fonts.jetbrains-mono
     noto-fonts-color-emoji
     noto-fonts-monochrome-emoji
+    monocraft
     
-    waybar
     brightnessctl
     htop
     btop
     fastfetch
-    networkmanagerapplet
-    fuzzel
-    pavucontrol
-    autotiling
-    wlogout
-    grim
-    slurp
-    ristretto
     libsForQt5.qt5ct
     kdePackages.qt6ct
    
@@ -133,10 +124,11 @@ in
   ];
 
   programs = {
-    zellij = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    #zellij = {
+    #  enable = true;
+    #  enableZshIntegration = true;
+    #};
+    tmux.enable = true;
   };
 
   xdg.configFile. "gtk-4.0/settings.ini" .text = ''
@@ -149,6 +141,8 @@ in
     Theme=Papirus-Dark
   '';
 
+  xdg.configFile. "tmux/tmux.conf" .source = config.lib.file.mkOutOfStoreSymlink "/home/haru/.config/tmux/tmux.conf";
+
   xfconf.settings = {
     xsettings = {
       "Net/ThemeName" = themeName;
@@ -156,6 +150,7 @@ in
     };
     xfwm4 = {
       "general/theme" = themeName;
+      "general/title_font" = "Monocraft SemiBold 9";
     };
   };
 
