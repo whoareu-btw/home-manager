@@ -1,4 +1,4 @@
-{ config, lib, pkgs,  ... }:
+{ pkgs,  ... }:
 
 {
   i18n = {
@@ -13,7 +13,7 @@
           kdePackages.fcitx5-configtool
         ];
 
-        waylandFrontend = true;
+        #waylandFrontend = true;
 
         settings = {
           addons = {
@@ -27,8 +27,11 @@
 
           globalOptions = {
             Hotkey = {
-              ToggleInputMethod = "Control+Right Shift";
               EnumerateWithTriggerKeys = true;
+            };
+
+            "Hotkey/TriggerKeys" = {
+              "0" = "Control+Shift_R";
             };
           };
 
